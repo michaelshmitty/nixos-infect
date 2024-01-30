@@ -318,7 +318,8 @@ infect() {
   #addgroup nixbld -g 30000 || true
   #for i in {1..10}; do adduser -DH -G nixbld nixbld$i || true; done
 
-  curl -L https://nixos.org/nix/install | sh -s -- --no-channel-add
+  [[ -z "$NIX_VERSION" ]] && NIX_VERSION="2.19.3"
+  curl -L https://releases.nixos.org/nix/nix-$NIX_VERSION/install | sh -s -- --no-channel-add
 
   # shellcheck disable=SC1090
   source ~/.nix-profile/etc/profile.d/nix.sh
